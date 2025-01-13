@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe Game</title>
+</head>
+<style>
+    body{
+        color:white;
+        background-color: black;
+    }
+    .container{
+        display:flex;
+        
+    }
+    .box{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:80px;
+        width:80px;
+        background-color: rgb(0, 0, 0);
+        font-size: 40pt;
+        font-family:'Gill Sans';
+        border: 2px solid rgb(225, 240, 22);
+        color:bisque;
+        border-radius: 10px;
+        box-shadow: 10px 10px 10px 10px rgb(0, 0, 0);
+    }
+    h3{
+        color: rgb(12, 194, 255);
+        
+    }
+    .hid{
+        color:black;
+    }
+    button{
+        color:aqua;
+        background-color: blue;
+    }
+</style>
+<body>
+    <h3>TicTacToe By Tushar</h3>
+    <div class="container">
+    <div class="box hid" id="a">a</div>
+    <div class="box hid" id="b">b</div>
+    <div class="box hid" id="c">c</div>
+    </div>
+    <div class="container">
+    <div class="box hid" id="d">d</div>
+    <div class="box hid" id="e">e</div>
+    <div class="box hid" id="f">f</div>
+    </div>
+    <div class="container">
+    <div class="box hid" id="g">g</div>
+    <div class="box hid" id="h">h</div>
+    <div class="box hid" id="i">i</div>
+    </div>
+    <button onclick="location.reload()">Refresh Page</button>
+
+</body>
+<script>
+    let wincount=0;
+    let C=0;
+    let a=document.querySelector('#a');
+    let b=document.querySelector('#b');
+    let c=document.querySelector('#c');
+
+    let d=document.querySelector('#d');
+    let e=document.querySelector('#e');
+    let f=document.querySelector('#f');
+
+    let g=document.querySelector('#g');
+    let h=document.querySelector('#h');
+    let i=document.querySelector('#i');
+
+    document.addEventListener('click',function(event){
+        initialdiv = event.target;
+        initialdiv.style.color="white";
+        if(initialdiv.innerText!='X' && initialdiv.innerText!='O'){
+            if(C%2==0){
+                initialdiv.innerText='X';
+            }
+            else{
+                initialdiv.innerText='O';
+            }
+            initialdiv.style.backgroundColor="#860203";
+            C++;
+        }else{
+            console.log("already filled");
+        }
+        console.log();
+        if((a.innerText==b.innerText&&b.innerText==c.innerText)
+         ||(d.innerText==e.innerText&&e.innerText==f.innerText)
+         ||(g.innerText==h.innerText&&h.innerText==i.innerText)
+         ||(a.innerText==d.innerText&&d.innerText==g.innerText)
+         ||(b.innerText==e.innerText&&e.innerText==h.innerText)
+         ||(c.innerText==f.innerText&&f.innerText==i.innerText)
+         ||(a.innerText==e.innerText&&e.innerText==i.innerText)
+         ||(g.innerText==e.innerText&&e.innerText==c.innerText)){
+            console.log("Player "+initialdiv.innerText+" won the game !!");
+            wincount=1;
+            let win=document.createElement('h1');
+            win.innerText="Player "+initialdiv.innerText+" won the game !!";
+            win.style.color="green";
+            win.style.fontSize="20pt";
+            document.body.appendChild(win);
+        }
+
+        
+        if(C>=9&&wincount==0){
+            let draw=document.createElement('h1');
+            draw.innerText=" DRAW !!";
+            draw.style.color="red";
+            draw.style.fontSize="20pt";
+            document.body.appendChild(draw);
+        }
+    })
+</script>
+</html>
